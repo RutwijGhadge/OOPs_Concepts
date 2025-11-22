@@ -1,5 +1,4 @@
-package org.example;
-import  java.util.*;
+package org.example.Concurrency.Mutex;
 
 public class Adder implements Runnable{
     private Count count;

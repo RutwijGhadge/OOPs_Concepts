@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Concurrency.Mutex;
 
 public class Main {
     public static void main(String[] args) {

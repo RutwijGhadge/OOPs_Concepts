@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Concurrency.Mutex;
 
 public class Subtractor implements Runnable{
     private Count count;

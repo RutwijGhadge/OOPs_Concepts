@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Constructor;
 
 public class Car {
     int price;      //default access modifier
