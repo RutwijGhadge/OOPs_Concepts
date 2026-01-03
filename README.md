@@ -1,2 +1,2 @@
 # OOPs_Concepts
-Oops Concepts
+Object Oriented Concepts
