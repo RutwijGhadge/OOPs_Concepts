@@ -92,6 +92,20 @@ public class Solution {
             return results;
         });
 
+        /*
+        | Method       | Input        | Output             |
+        | ------------ | ------------ | ------------------ |
+        | `thenApply`  | Takes result | Returns new result |
+        | `thenAccept` | Takes result | No return          |
+        | `thenRun`    | No input     | No return          |
+        |------------  | ------------ | ------------------ |
+
+        .thenApply(r -> r + "X")
+        .thenAccept(System.out::println)
+        .thenRun(() -> log.info("Done"));
+
+         */
+
 
     }
 }
