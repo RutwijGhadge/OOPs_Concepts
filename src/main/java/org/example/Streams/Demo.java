@@ -1,10 +1,6 @@
 package org.example.Streams;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Demo {
@@ -113,6 +109,18 @@ public class Demo {
                 .findFirst()
                 .orElse(null);
         System.out.println("Second Smallest:"+second_smallest);
+//********************************************************************************************************************************************
+        Employee e1=new Employee(1,"xyz",20000,25,"Aman");
+        Employee e2=new Employee(2,"abc",25000,25,"Ajay");
+        Employee e3=new Employee(3,"pqr",24000,25,"vinod");
+        Employee e4=new Employee(4,"xyz",19000,25,"sid");
+        Employee e5=new Employee(5,"abc",89000,25,"shyam");
 
+        List<Employee>emp=List.of(e1,e2,e3,e4,e5);
+        Map<String,Employee>result=emp.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+                Collectors.collectingAndThen(Collectors.maxBy(
+                        Comparator.comparingDouble(Employee::getSalary)
+                ),Optional::get)));
+        result.forEach((dept,emps)->System.out.println(emps.getDepartment()+" : "+emps.getSalary()));
     }
 }
