@@ -32,6 +32,7 @@ public class AtomicCounter {
         t1.join();
         System.out.println(vc.getCounter());
     }
+}
     /*
     Use volatile when:
         Only read/write operations
@@ -43,5 +44,3 @@ public class AtomicCounter {
         Counters, metrics
         High concurrency without locks
      */
-
-}
