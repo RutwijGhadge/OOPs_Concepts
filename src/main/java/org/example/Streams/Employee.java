@@ -8,12 +8,23 @@ public class Employee {
     private int salary;
     private String department;
 
-    public Employee(int id, String department, int salary, int age, String name) {
+    public Employee(int id, String name, int salary, int age, String department) {
         this.id = id;
         this.department = department;
         this.salary = salary;
         this.age = age;
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                ", department='" + department + '\'' +
+                '}';
     }
 
     public int getId() {
