@@ -14,17 +14,16 @@ public class TransientExample implements Serializable {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         TransientExample transientExample=new TransientExample("John","abc123");
         ObjectOutputStream out =
-                new ObjectOutputStream(new FileOutputStream("Transient.ser"));
+                new ObjectOutputStream(new FileOutputStream("Transient.txt"));
         out.writeObject(transientExample);
         out.close();
 
         ObjectInputStream in =
-                new ObjectInputStream(new FileInputStream("Transient.ser"));
+                new ObjectInputStream(new FileInputStream("Transient.txt"));
         TransientExample deserialized = (TransientExample) in.readObject();
 
         System.out.println(deserialized.Username);
         System.out.println(deserialized.password);
-
     }
 }
 /*

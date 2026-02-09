@@ -11,3 +11,5 @@ public class Main {
 }
 //LSP : Definition:
 //Objects of a superclass should be replaceable with objects of its subclasses without breaking the correctness of the program.
+//Superclass : Bird
+//Subclasses : Peacock, Penguin
