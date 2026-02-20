@@ -206,140 +206,173 @@ public class Demo {
 //        System.out.println(results);
 
         //Even Numbers
-        List<Integer>nums = List.of(1,2,3,4,5,6,7,8,9,10);
-        System.out.println(nums.stream().filter(a-> a%2==0).count());
-        List<Integer>list=nums.stream().filter(a->a%2==0).toList();
-        System.out.println(list);
-
-         System.out.println("************************************************************");
-        //Square all Numbers
-         List<Integer>nums1 = List.of(1,2,3,4,5);
-         List<Integer>integers= nums1.stream().map(a-> a*a).toList();
-         System.out.println(integers);
-
-         System.out.println("************************************************************");
-         //Convert to UpperCase
-         List<String>lower = List.of("java","spring","boot");
-         List<String> upper = lower.stream().map(String::toUpperCase).toList();
-         System.out.println(upper);
-
-         System.out.println("************************************************************");
-         //Maximum Length
-         List<Integer>length = lower.stream().map(String::length).toList();
-         System.out.println(length);
-
-         String lengthMaximum = lower.stream().max(Comparator.comparingInt(String::length)).orElse(null);
-         System.out.println("Maximum Length String in UpperCase:"+ lengthMaximum.toUpperCase());
-
-         System.out.println("************************************************************");
-         List<String>srtng=List.of("Amit","Rahul","Ankit","John","Aman");
-         System.out.println("String Starting with A : " +srtng.stream().filter(a-> a.startsWith("A")).count());
-         System.out.println("String with Length 5 :"+srtng.stream().filter(a->a.length()==5).toList());
-
-         System.out.println("************************************************************");
-         List<Integer>arr=List.of(10,25,3,90,45);
-         System.out.println("Maximum Number from List of Array:"+ arr.stream().max(Comparator.comparingInt(Integer::intValue)).orElse(0));
-         System.out.println("Maximum Number from List of Array:"+ arr.stream().max(Integer::compareTo).orElse(0));
-
-         System.out.println("************************************************************");
-         List<Integer>arrs=List.of(1,2,2,3,4,4,5);
-         System.out.println("Distinct Numbers:"+ arrs.stream().distinct().toList());
-
-         System.out.println("************************************************************");
-         Person p1 = new Person(1,"Aman",23330);
-         Person p2 = new Person(2,"Anand",32444);
-         Person p3 = new Person(3,"Asif",20000);
-         Person p4 = new Person(4,"Alok",26700);
-         Person p5 = new Person(5,"Babooo",22330);
-
-         List<Person>people = List.of(p1,p2,p3,p4,p5);
-         List<Person> personList= people.stream().filter(a-> a.getSalary()>20000).toList();
-         personList.forEach(System.out::println);
-
-         System.out.println("************************************************************");
-         System.out.println("Ascending Order Salary: "+people.stream().sorted(Comparator.comparingDouble(Person::getSalary)).toList());
-         System.out.println("Descending Order Salary: "+ people.stream().sorted(Comparator.comparingDouble(Person::getSalary).reversed()).toList());
-
-         System.out.println("Second Highest Salary: "+ people.stream()
-                         .sorted(Comparator.comparingDouble(Person::getSalary).reversed())
-                         .skip(1)
-                 .findFirst().orElse(null));
-
-         System.out.println("Second Lowest Salary: "+ people.stream().sorted(Comparator.comparingDouble(Person::getSalary))
-                 .skip(1)
-                 .findFirst()
-                 .orElse(null));
-
-         System.out.println("Third Lowest Salary: "+ people.stream().sorted(Comparator.comparingDouble(Person::getSalary))
-                .skip(2)
-                .findFirst()
-                .orElse(null));
-
-         System.out.println("************************************************************");
-         List<Integer>array = List.of(10,5,20,8,25,25,3);
-         System.out.println("Second Highest Number:"+
-                 array.stream()
-                         .distinct()
-                         .sorted(Comparator.reverseOrder())
-                         .skip(1)
-                         .findFirst()
-                         .stream().toList());
-
-         System.out.println("************************************************************");
-         List<String>arrays=List.of("apple","banana","mango");
-         System.out.println("Join String with Commas :"+arrays.stream().collect(Collectors.joining(",")));
-
-         System.out.println("************************************************************");
-         List<Integer>integers1 = List.of(1,2,3,4,5);
-         System.out.println("Sum of all Numbers :"+ integers1.stream().reduce(Integer::sum).get());
-         System.out.println("Average of all Numbers :"+ integers1.stream().mapToInt(Integer::intValue).average().orElse(0.0));
-         System.out.println("Minimum of all Numbers :"+ integers1.stream().sorted().findFirst().get());
-         System.out.println("Maximum of all Numbers :"+ integers1.stream().reduce(Integer::max).get());
-         System.out.println("************************************************************");
+//        List<Integer>nums = List.of(1,2,3,4,5,6,7,8,9,10);
+//        System.out.println(nums.stream().filter(a-> a%2==0).count());
+//        List<Integer>list=nums.stream().filter(a->a%2==0).toList();
+//        System.out.println(list);
+//
+//         System.out.println("************************************************************");
+//        //Square all Numbers
+//         List<Integer>nums1 = List.of(1,2,3,4,5);
+//         List<Integer>integers= nums1.stream().map(a-> a*a).toList();
+//         System.out.println(integers);
+//
+//         System.out.println("************************************************************");
+//         //Convert to UpperCase
+//         List<String>lower = List.of("java","spring","boot");
+//         List<String> upper = lower.stream().map(String::toUpperCase).toList();
+//         System.out.println(upper);
+//
+//         System.out.println("************************************************************");
+//         //Maximum Length
+//         List<Integer>length = lower.stream().map(String::length).toList();
+//         System.out.println(length);
+//
+//         String lengthMaximum = lower.stream().max(Comparator.comparingInt(String::length)).orElse(null);
+//         System.out.println("Maximum Length String in UpperCase:"+ lengthMaximum.toUpperCase());
+//
+//         System.out.println("************************************************************");
+//         List<String>srtng=List.of("Amit","Rahul","Ankit","John","Aman");
+//         System.out.println("String Starting with A : " +srtng.stream().filter(a-> a.startsWith("A")).count());
+//         System.out.println("String with Length 5 :"+srtng.stream().filter(a->a.length()==5).toList());
+//
+//         System.out.println("************************************************************");
+//         List<Integer>arr=List.of(10,25,3,90,45);
+//         System.out.println("Maximum Number from List of Array:"+ arr.stream().max(Comparator.comparingInt(Integer::intValue)).orElse(0));
+//         System.out.println("Maximum Number from List of Array:"+ arr.stream().max(Integer::compareTo).orElse(0));
+//
+//         System.out.println("************************************************************");
+//         List<Integer>arrs=List.of(1,2,2,3,4,4,5);
+//         System.out.println("Distinct Numbers:"+ arrs.stream().distinct().toList());
+//
+//         System.out.println("************************************************************");
+//         Person p1 = new Person(1,"Aman",23330);
+//         Person p2 = new Person(2,"Anand",32444);
+//         Person p3 = new Person(3,"Asif",20000);
+//         Person p4 = new Person(4,"Alok",26700);
+//         Person p5 = new Person(5,"Babooo",22330);
+//
+//         List<Person>people = List.of(p1,p2,p3,p4,p5);
+//         List<Person> personList= people.stream().filter(a-> a.getSalary()>20000).toList();
+//         personList.forEach(System.out::println);
+//
+//         System.out.println("************************************************************");
+//         System.out.println("Ascending Order Salary: "+people.stream().sorted(Comparator.comparingDouble(Person::getSalary)).toList());
+//         System.out.println("Descending Order Salary: "+ people.stream().sorted(Comparator.comparingDouble(Person::getSalary).reversed()).toList());
+//
+//         System.out.println("Second Highest Salary: "+ people.stream()
+//                         .sorted(Comparator.comparingDouble(Person::getSalary).reversed())
+//                         .skip(1)
+//                 .findFirst().orElse(null));
+//
+//         System.out.println("Second Lowest Salary: "+ people.stream().sorted(Comparator.comparingDouble(Person::getSalary))
+//                 .skip(1)
+//                 .findFirst()
+//                 .orElse(null));
+//
+//         System.out.println("Third Lowest Salary: "+ people.stream().sorted(Comparator.comparingDouble(Person::getSalary))
+//                .skip(2)
+//                .findFirst()
+//                .orElse(null));
+//
+//         System.out.println("************************************************************");
+//         List<Integer>array = List.of(10,5,20,8,25,25,3);
+//         System.out.println("Second Highest Number:"+
+//                 array.stream()
+//                         .distinct()
+//                         .sorted(Comparator.reverseOrder())
+//                         .skip(1)
+//                         .findFirst()
+//                         .stream().toList());
+//
+//         System.out.println("************************************************************");
+//         List<String>arrays=List.of("apple","banana","mango");
+//         System.out.println("Join String with Commas :"+arrays.stream().collect(Collectors.joining(",")));
+//
+//         System.out.println("************************************************************");
+//         List<Integer>integers1 = List.of(1,2,3,4,5);
+//         System.out.println("Sum of all Numbers :"+ integers1.stream().reduce(Integer::sum).get());
+//         System.out.println("Average of all Numbers :"+ integers1.stream().mapToInt(Integer::intValue).average().orElse(0.0));
+//         System.out.println("Minimum of all Numbers :"+ integers1.stream().sorted().findFirst().get());
+//         System.out.println("Maximum of all Numbers :"+ integers1.stream().reduce(Integer::max).get());
+//         System.out.println("************************************************************");
 
         List<Employee> emp = getEmployees();
 
-        Map<String , List<Employee>>dptEmp= emp.stream().collect(Collectors.groupingBy(Employee::getDepartment));
-        System.out.println("Grouping Employees DepartmentWise: "+dptEmp);
+//        Map<String , List<Employee>>dptEmp= emp.stream().collect(Collectors.groupingBy(Employee::getDepartment));
+//        System.out.println("Grouping Employees DepartmentWise: "+dptEmp);
+//
+//        System.out.println("************************************************************");
+//        Map<String, Optional<Employee>>salaryEmp= emp.stream()
+//                .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
+//        System.out.println("Department Wise Maximum Salary: "+salaryEmp);
+//
+//        System.out.println("************************************************************");
+//        Map<String,Double>salarySum= emp.stream()
+//                .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.summingDouble(Employee::getSalary)));
+//        System.out.println("Department Wise Salary Sum: "+salarySum);
+//
+//        System.out.println("************************************************************");
+//        Map<String,Optional<Employee>>highestPaid= emp.stream()
+//                .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
+//        System.out.println("Highest Paid Employees DepartmentWise:"+ highestPaid);
+//
+//        System.out.println("************************************************************");
+//        System.out.println("Partition Even and Odd:"+ array.stream().collect(Collectors.partitioningBy(a-> a%2==0)));
+//
+//        System.out.println("************************************************************");
+//        Set<Integer>duplicates=arrs.stream()
+//                .filter(n->Collections.frequency(arrs,n)>1)
+//                .collect(Collectors.toSet());
+//        System.out.println("Duplicate Elements: "+duplicates);
+//
+//        System.out.println("************************************************************");
+//        Map<Integer,Long>map=arrs.stream()
+//                .collect(Collectors.groupingBy(n->n,Collectors.counting()));
+//        System.out.println("Frequency of Each Element :"+map);
+//
+//        System.out.println("************************************************************");
+//        Map<Integer,Long>maps= arrs.stream()
+//                .collect(Collectors.groupingBy(n->n,Collectors.counting()))
+//                .entrySet().stream()
+//                .filter(n-> n.getValue()>1)
+//                .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+//        System.out.println("Only Duplicate Elements with Frequency: "+maps);
 
         System.out.println("************************************************************");
-        Map<String, Optional<Employee>>salaryEmp= emp.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
-        System.out.println("Department Wise Maximum Salary: "+salaryEmp);
+        Map<String,List<Employee>>employeeDepartmentWise= emp.stream().collect(Collectors.groupingBy(Employee::getDepartment));
+        System.out.println("Grouping of Employees DepartmentWise :"+employeeDepartmentWise);
 
         System.out.println("************************************************************");
-        Map<String,Double>salarySum= emp.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.summingDouble(Employee::getSalary)));
-        System.out.println("Department Wise Salary Sum: "+salarySum);
+        Map<String,Optional<Employee>>highestPaid= emp.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
+        System.out.println("Highest Paid Employee DepartmentWise:"+highestPaid);
 
         System.out.println("************************************************************");
-        Map<String,Optional<Employee>>highestPaid= emp.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
-        System.out.println("Highest Paid Employees DepartmentWise:"+ highestPaid);
+        List<Employee>allDetails=emp.stream().filter(e->e.getSalary()>20000).toList();
+        System.out.println("Employee Details with salary > 20K" + allDetails);
 
         System.out.println("************************************************************");
-        System.out.println("Partition Even and Odd:"+ array.stream().collect(Collectors.partitioningBy(a-> a%2==0)));
+        List<String>onlyNames= emp.stream().filter(e->e.getSalary()>20000).map(Employee::getName).toList();
+        System.out.println(onlyNames);
 
         System.out.println("************************************************************");
-        Set<Integer>duplicates=arrs.stream()
-                .filter(n->Collections.frequency(arrs,n)>1)
-                .collect(Collectors.toSet());
-        System.out.println("Duplicate Elements: "+duplicates);
+        long onlyCount= emp.stream().filter(e->e.getSalary()>20000).count();
+        System.out.println("Count :"+ onlyCount);
 
         System.out.println("************************************************************");
-        Map<Integer,Long>map=arrs.stream()
-                .collect(Collectors.groupingBy(n->n,Collectors.counting()));
-        System.out.println("Frequency of Each Element :"+map);
+        Employee employee=emp.stream().max(Comparator.comparingDouble(Employee::getSalary)).orElse(null);
+        System.out.println("Highest Salary Employee:"+ employee);
 
         System.out.println("************************************************************");
-        Map<Integer,Long>maps= arrs.stream()
-                .collect(Collectors.groupingBy(n->n,Collectors.counting()))
-                .entrySet().stream()
-                .filter(n-> n.getValue()>1)
-                .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
-        System.out.println("Only Duplicate Elements with Frequency: "+maps);
+        List<String>list=List.of("Java","SpringBoot","boot");
+        String maxLength=list.stream().max(Comparator.comparingInt(String::length)).orElse(null);
+        System.out.println("Maximum Length of String:"+maxLength);
 
-        System.out.println("************************************************************");
+        String result= list.stream().max(Comparator.comparingInt(String::length))
+                .map(String::toUpperCase).orElse(null);
+        System.out.println("Maximum Length String in UpperCase:"+result);
+
+
     }
 
     private static List<Employee> getEmployees() {
