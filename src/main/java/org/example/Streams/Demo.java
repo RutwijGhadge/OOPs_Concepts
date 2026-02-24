@@ -2,7 +2,6 @@ package org.example.Streams;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Demo {
     public static void main(String[] args) {
@@ -368,11 +367,39 @@ public class Demo {
         String maxLength=list.stream().max(Comparator.comparingInt(String::length)).orElse(null);
         System.out.println("Maximum Length of String:"+maxLength);
 
+        System.out.println("************************************************************");
         String result= list.stream().max(Comparator.comparingInt(String::length))
                 .map(String::toUpperCase).orElse(null);
         System.out.println("Maximum Length String in UpperCase:"+result);
 
+        System.out.println("************************************************************");
+        List<Integer>integr = List.of(1,20,3,45,5,73,547,392,34,53,40,324);
+        System.out.println("Numbers Divisible by 3:"+integr.stream().filter(a-> a%3==0).collect(Collectors.toSet()));
 
+        System.out.println("************************************************************");
+        System.out.println("Even Numbers Count:"+integr.stream().filter(a->a%2==0).count());
+
+        System.out.println("************************************************************");
+        System.out.println("Smallest Number:"+integr.stream().min(Comparator.comparingInt(Integer::intValue)).get());
+
+        System.out.println("************************************************************");
+        List<String>lists=Arrays.asList("Java","spring","boot");
+        List<Integer>lengths=lists.stream().map(String::length).toList();
+        System.out.println("Length of Strings:"+lengths);
+
+        System.out.println("************************************************************");
+        System.out.println("If Any number >100: "+integr.stream().anyMatch(n->n>100));
+
+        System.out.println("************************************************************");
+        System.out.println("Finding first element greater than 50: "+integr.stream().filter(a->a>50).sorted().findFirst());
+
+        System.out.println("************************************************************");
+        System.out.println("Sum of Squares :"+ integr.stream().mapToInt(a->a*a).sum());
+
+        System.out.println("************************************************************");
+        List<String>str= Arrays.asList("A",null, "B", null, "C");
+        List<String>listing=str.stream().filter(Objects::nonNull).toList();
+        System.out.println("Filter Objects Non Null :"+listing);
     }
 
     private static List<Employee> getEmployees() {
