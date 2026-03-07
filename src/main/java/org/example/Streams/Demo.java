@@ -1,6 +1,7 @@
 package org.example.Streams;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Demo {
@@ -400,37 +401,77 @@ public class Demo {
         List<String>str= Arrays.asList("A",null, "B", null, "C");
         List<String>listing=str.stream().filter(Objects::nonNull).toList();
         System.out.println("Filter Objects Non Null :"+listing);
+
+        List<Employee> employees1 = getEmployees();
+        Map<Integer, String> hm = new HashMap<>();
+
+        System.out.println("************************************************************");
+        hm = employees1.stream().collect(Collectors.toMap(Employee::getId, Employee::getName));
+        hm = employees1.stream().collect(Collectors.toMap(Employee::getId, Employee::getName, (exist, replace) -> exist));
+        System.out.println(hm);
+
+        System.out.println("************************************************************");
+        //Maximum or highest salary
+        System.out.println("Highest Paid Salaried Employee:");
+        Employee highesytPaid = employees1.stream().max(Comparator.comparing(Employee::getSalary)).orElse(null);
+        System.out.println(highesytPaid);
+
+        System.out.println("************************************************************");
+        System.out.println("Employees Group By Id:");
+        Map<Integer, Employee> employeesList = employees1.stream().collect(Collectors.toMap(Employee::getId, Function.identity()));
+        System.out.println(employeesList);
+
+        System.out.println("************************************************************");
+        System.out.println("Employees Group By Salary:");
+        Map<Integer, List<Employee>> employeeSalaryGroup = employees1.stream().collect(Collectors.groupingBy(Employee::getSalary));
+        System.out.println(employeeSalaryGroup);
+
+        System.out.println("************************************************************");
+        System.out.println("Count Employees by salaries:");
+        Map<Integer, Long> salaryFreq = employees1.stream().collect(Collectors.groupingBy(Employee::getSalary, Collectors.counting()));
+        System.out.println(salaryFreq);
+
+        System.out.println("************************************************************");
+        List<String> employees = employees1.stream().filter(e -> e.getSalary() > 60000).map(Employee::getName).toList();
+        System.out.println("Employees with Salary Greater than 60K:" + employees);
+
+        System.out.println("************************************************************");
+        List<Employee> employeeList = employees1.stream().sorted(Comparator.comparingInt(Employee::getSalary)).toList();
+        System.out.println("Salary Sorted by Ascending Order:" + employeeList);
+
+        System.out.println("************************************************************");
+
     }
 
     private static List<Employee> getEmployees() {
-        Employee e1  = new Employee(1,  "Aman",   20000, 25, "IT");
-        Employee e2  = new Employee(2,  "Ravi",   45000, 32, "HR");
-        Employee e3  = new Employee(3,  "Neha",   55000, 28, "Finance");
-        Employee e4  = new Employee(4,  "Pooja",  30000, 22, "IT");
-        Employee e5  = new Employee(5,  "Rahul",  70000, 35, "Finance");
-        Employee e6  = new Employee(6,  "Ankit",  18000, 19, "Support");
-        Employee e7  = new Employee(7,  "Sneha",  62000, 30, "HR");
-        Employee e8  = new Employee(8,  "Vikas",  80000, 40, "IT");
-        Employee e9  = new Employee(9,  "Kiran",  27000, 24, "Support");
-        Employee e10 = new Employee(10, "Priya",  52000, 29, "Finance");
+        Employee e1 = new Employee(1, "Aman", 20000, 25, "IT");
+        Employee e2 = new Employee(2, "Ravi", 45000, 32, "HR");
+        Employee e3 = new Employee(3, "Neha", 55000, 28, "Finance");
+        Employee e4 = new Employee(4, "Pooja", 30000, 22, "IT");
+        Employee e5 = new Employee(5, "Rahul", 70000, 35, "Finance");
+        Employee e6 = new Employee(6, "Ankit", 18000, 19, "Support");
+        Employee e7 = new Employee(7, "Sneha", 62000, 30, "HR");
+        Employee e8 = new Employee(8, "Vikas", 80000, 40, "IT");
+        Employee e9 = new Employee(9, "Kiran", 27000, 24, "Support");
+        Employee e10 = new Employee(10, "Priya", 52000, 29, "Finance");
 
-        Employee e11 = new Employee(11, "Rohit",  90000, 45, "IT");
-        Employee e12 = new Employee(12, "Meena",  33000, 26, "HR");
+        Employee e11 = new Employee(11, "Rohit", 90000, 45, "IT");
+        Employee e12 = new Employee(12, "Meena", 33000, 26, "HR");
         Employee e13 = new Employee(13, "Suresh", 48000, 31, "Support");
-        Employee e14 = new Employee(14, "Nisha",  76000, 38, "Finance");
-        Employee e15 = new Employee(15, "Arjun",  15000, 18, "Support");
+        Employee e14 = new Employee(14, "Nisha", 76000, 38, "Finance");
+        Employee e15 = new Employee(15, "Arjun", 15000, 18, "Support");
 
-        Employee e16 = new Employee(16, "Kavya",  58000, 27, "IT");
+        Employee e16 = new Employee(16, "Kavya", 58000, 27, "IT");
         Employee e17 = new Employee(17, "Deepak", 67000, 34, "HR");
-        Employee e18 = new Employee(18, "Swati",  42000, 23, "Finance");
-        Employee e19 = new Employee(19, "Manoj",  88000, 41, "IT");
-        Employee e20 = new Employee(20, "Rina",   36000, 28, "Support");
+        Employee e18 = new Employee(18, "Swati", 42000, 23, "Finance");
+        Employee e19 = new Employee(19, "Manoj", 88000, 41, "IT");
+        Employee e20 = new Employee(20, "Rina", 36000, 28, "Support");
 
         Employee e21 = new Employee(21, "Aakash", 51000, 29, "Finance");
-        Employee e22 = new Employee(22, "Divya",  61000, 33, "HR");
-        Employee e23 = new Employee(23, "Nitin",  47000, 27, "IT");
+        Employee e22 = new Employee(22, "Divya", 61000, 33, "HR");
+        Employee e23 = new Employee(23, "Nitin", 47000, 27, "IT");
         Employee e24 = new Employee(24, "Shreya", 69000, 36, "Finance");
-        Employee e25 = new Employee(25, "Varun",  25000, 21, "Support");
+        Employee e25 = new Employee(25, "Varun", 25000, 21, "Support");
 
         List<Employee> emp = List.of(
                 e1, e2, e3, e4, e5,
