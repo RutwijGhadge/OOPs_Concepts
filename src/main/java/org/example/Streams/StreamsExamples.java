@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 public class StreamsExamples {
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(1, 7, 4, 5, 2, 3);
+        List<Integer> reversed = numbers.stream().sorted(Comparator.reverseOrder()).toList();
+        System.out.println("Sorting in reverse Order:" + reversed);
+
         List<Integer> number = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         int product = number.stream().reduce((a, b) -> a * b).get();
         System.out.println("Product of Numbers:" + product);
@@ -15,7 +18,7 @@ public class StreamsExamples {
         System.out.println("Common Elements from both Lists:" + result);
 
         //word length map
-        String strss = "java code Design by Naman Sarawat";
+        String strss = "Java Code Design by Naman Sarawat";
         Map<String, Integer> map = Arrays.stream(strss.split(" ")).collect(Collectors.toMap(Function.identity(), String::length));
         System.out.println("Words Length Map" + map);
 
@@ -156,11 +159,14 @@ public class StreamsExamples {
         Map<String, List<Employee>> group_By_Dept = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
         System.out.println(group_By_Dept);
 
-        List<Integer> nums_freq = List.of(1, 2, 2, 3, 3, 3);
+        List<Integer> nums_freq = List.of(1, 3, 2, 3, 1, 3);
         //Find Duplicate From List
         List<Integer> arr = nums_freq.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().filter(a -> a.getValue() > 1).map(v -> v.getKey()).toList();
         System.out.println("Duplicate Values:" + arr);
 
+        HashSet<Integer> hs = new HashSet<>();
+        List<Integer> ls = nums_freq.stream().filter(v -> !hs.add(v)).collect(Collectors.toSet()).stream().toList();
+        System.out.println("Duplicate Numbers:" + ls);
 
         Map<Integer, Long> mapss = nums_freq.stream().collect(Collectors.groupingBy(n -> n, Collectors.counting()));
         System.out.println("Numbers Frequency:" + mapss);
@@ -178,7 +184,9 @@ public class StreamsExamples {
         Map<String, Long> map1 = Arrays.stream(strs.split(" ")).collect(Collectors.groupingBy(wo -> wo, Collectors.counting()));
         System.out.println("Word wise Frequency:" + map1);
 
-
+        List<Integer> numb = List.of(1, 2, 3, 4, 5);
+        int sums = numb.stream().reduce((a, b) -> a * b).get();
+        System.out.println("Sum of Product:" + sums);
     }
 
     private static List<Employee> getEmployees() {
