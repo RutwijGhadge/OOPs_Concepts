@@ -229,6 +229,14 @@ public class StreamsExamples {
                 Collectors.collectingAndThen(Collectors.toList(), list -> list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(N).toList())));
         System.out.println("Top N Employees Department Wise:" + maps);
 
+        //Find the Name and Highest Average of marks
+        String input[][] = {
+                {"Bob", "75"}, {"Roger", "84"}, {"Bob", "80"}, {"Aman", "78"}, {"Dhiraj", "39"}
+        };
+
+        Map<String, Double> mpas = Arrays.stream(input).collect(Collectors.groupingBy(arr -> arr[0], Collectors.averagingInt(arr -> Integer.parseInt(arr[1]))));
+        Map.Entry<String, Double> doubleEntry = mpas.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(null);
+        System.out.println(doubleEntry.getKey() + " " + doubleEntry.getValue());
     }
 
 
