@@ -443,7 +443,7 @@ public class Demo {
 
     }
 
-    private static List<Employee> getEmployees() {
+    static List<Employee> getEmployees() {
         Employee e1 = new Employee(1, "Aman", 20000, 25, "IT");
         Employee e2 = new Employee(2, "Ravi", 45000, 32, "HR");
         Employee e3 = new Employee(3, "Neha", 55000, 28, "Finance");

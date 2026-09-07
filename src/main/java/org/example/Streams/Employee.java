@@ -16,6 +16,18 @@ public class Employee {
         this.name = name;
     }
 
+    public Employee(String name, String department) {
+        this.name = name;
+        this.department = department;
+    }
+
+    public Employee(String name, int i, int i1) {
+        this.name = name;
+        this.id = i;
+        this.salary = i1;
+    }
+
+
     @Override
     public String toString() {
         return "Employee{" +

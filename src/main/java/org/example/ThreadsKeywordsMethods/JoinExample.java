@@ -1,5 +1,10 @@
 package org.example.ThreadsKeywordsMethods;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class JoinExample extends Thread{
     public void run() {
         for(int i=0;i<5;i++){
@@ -12,7 +17,7 @@ public class JoinExample extends Thread{
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
         JoinExample joinExample=new JoinExample();
 
         joinExample.start();
@@ -20,6 +25,14 @@ public class JoinExample extends Thread{
 
         System.out.println("Current Thread:" + Thread.currentThread().getName());
 
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        Future<Integer> future = executorService.submit(() -> 10 + 30);
+        System.out.println(future.get());
+
+        Thread t = new Thread(() ->
+                System.out.println("Thread Name :" + Thread.currentThread().getName())
+        );
+        t.start();
     }
 }
 /*
